@@ -1,0 +1,89 @@
+body{
+margin:0;
+font-family:Arial;
+}
+
+.hero{
+background:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover no-repeat;
+height:520px;
+position:relative;
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding-top:20px;
+}
+
+.logo{
+color:#f6e27a;
+font-style:italic;
+font-weight:bold;
+}
+
+.nav-box{
+border:2px solid #f6e27a;
+padding:5px 15px;
+}
+
+.nav-box a{
+color:#f6e27a;
+text-decoration:none;
+margin-left:15px;
+}
+
+.hero-box{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(0,0,0,0.7);
+color:white;
+padding:35px 50px;
+border-radius:6px;
+}
+
+.hero-box h1{
+font-weight:bold;
+}
+
+.hero-box button{
+margin-top:10px;
+}
+
+.highlights{
+background:#d9eff1;
+padding:40px 0;
+}
+
+.highlights h3{
+font-weight:bold;
+letter-spacing:2px;
+}
+
+.city{
+margin-top:10px;
+font-weight:bold;
+}
+
+.city span{
+color:#2c8f7a;
+}
+
+.footer{
+background:#111;
+padding:30px;
+}
+
+.footer i{
+font-size:40px;
+color:white;
+margin:0 20px;
+}
+
+.highlight-img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
