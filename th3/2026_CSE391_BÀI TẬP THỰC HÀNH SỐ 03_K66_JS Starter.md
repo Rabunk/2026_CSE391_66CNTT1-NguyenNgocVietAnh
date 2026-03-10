@@ -137,14 +137,14 @@ Sau đó:
 > - Dòng log hiển thị gì sau khi em sửa thông tin?
 > - Nếu em quên dấu `;` hoặc quên dấu `+`, điều gì xảy ra? Trình duyệt báo lỗi thế nào?
 
----
+--- thì sẽ gặp lỗi syntax 
 
 #### Bước 5: Phản tư nhanh (Reflection)
 
 > - Điều thú vị nhất em vừa khám phá được về console là gì?
 > - Em gặp lỗi cú pháp nào? Em đã xử lý bằng cách nào (tự sửa, hỏi bạn, đọc lỗi, tìm Google, …)?
 
----
+--- đọc lỗi, sửa lỗi và tra google
 
 ## 4. HOẠT ĐỘNG 2 (40’): CẤU TRÚC ĐIỀU KHIỂN \& HÀM
 
@@ -184,8 +184,8 @@ function tinhDiemTrungBinh(m1, m2, m3) {
 
 #### Bước 1: Đoán trước – chạy sau
 
-> a) Nếu `score = 9`, em dự đoán console sẽ in: ........................
-> b) Nếu `score = 6`, em dự đoán console sẽ in: ........................
+> a) Nếu `score = 9`, em dự đoán console sẽ in: giỏi.............
+> b) Nếu `score = 6`, em dự đoán console sẽ in: trung bình.......
 
 Sau đó:
 
@@ -193,8 +193,8 @@ Sau đó:
 2. Thay `score = 6`, kiểm tra lại.
 
 > So sánh dự đoán và kết quả thực tế:
-> - Trường hợp `score = 9`: Dự đoán vs Thực tế: ........................
-> - Trường hợp `score = 6`: Dự đoán vs Thực tế: ........................
+> - Trường hợp `score = 9`: Dự đoán vs Thực tế: ....như nhau.......
+> - Trường hợp `score = 6`: Dự đoán vs Thực tế: ....như nhau.......
 
 ---
 
@@ -204,8 +204,7 @@ Sau đó:
 > - Khi nào chương trình in `"Yếu"`?
 > - Em hãy mô tả cấu trúc `if/else` bằng lời của em (có thể ví von “ngã rẽ” trong đời sống):
 
-........................................................................
-........................................................................
+nếu là trên 8 điểm thì sẽ đạt Giỏi còn nếu chỉ giữa 6.5 và 8 thì sẽ rẽ sang khá, còn ngã rẽ trung bình thì trên 5 mới có được
 
 ---
 
@@ -216,7 +215,7 @@ Sau đó:
 tinhDiemTrungBinh(8, 7, 9);
 ```
 
-> Em ghi lại giá trị hàm trả về: ..................................
+> Em ghi lại giá trị hàm trả về: ......8..............
 
 2. Viết thêm hàm `xepLoai(avg)` trong file JS:
 ```js
@@ -238,12 +237,15 @@ console.log("Điểm TB:", avg, " - Xếp loại:", loai);
 
 > Câu hỏi:
 > - Một hàm gồm những phần chính nào?
->   - Tên hàm: .................................................
->   - Tham số (parameters): ....................................
->   - Thân hàm (body): .........................................
->   - Giá trị trả về (return): .................................
+>   - Tên hàm: Là tên dùng để gọi và nhận biết hàm trong chương trình
+>   - Tham số (parameters): Là các biến được truyền vào hàm để hàm sử dụng khi thực hiện công việc
+>   - Thân hàm (body): Là phần chứa các câu lệnh của hàm, nơi thực hiện các thao tác, tính toán hoặc xử lý dữ liệu.
+>   - Giá trị trả về (return): Là kết quả mà hàm trả lại cho nơi gọi hàm sau khi thực hiện xong
 > - Ưu điểm của việc dùng hàm thay vì lặp lại cùng một đoạn code nhiều lần là gì?
-
+Giảm lặp lại code (tránh trùng lặp).
+Chương trình dễ đọc và dễ hiểu hơn.
+Dễ bảo trì và sửa lỗi (chỉ cần sửa trong hàm).
+Có thể tái sử dụng nhiều lần trong chương trình.
 ---
 
 #### Bước 4: Mở rộng nhỏ (tuỳ chọn)
@@ -255,6 +257,11 @@ function kiemTraTuoi(age) {
   // TODO:
   // Nếu age >= 18 -> console.log("Đủ 18 tuổi");
   // Ngược lại -> console.log("Chưa đủ 18 tuổi");
+  if (age >= 18) {
+    console.log("Đủ 18 tuổi");
+  } else {
+    console.log("Chưa đủ 18 tuổi");
+  }
 }
 ```
 
@@ -313,8 +320,12 @@ btnHello.addEventListener("click", function () {
 
 > Câu hỏi:
 > - `document.getElementById("status")` đang làm gì?
+truy vấn tới phần tử chứa id status
 > - Sự kiện `"click"` xảy ra khi nào?
+khi đúp con trỏ tới
 > - Trong đoạn code trên, khi nhấn nút `btnHello`, điều gì thay đổi trên trang?
+xuất hiện dòng trên nút đó "Xin chào! Đây là nội dung được thay đổi bằng JavaScript."
+
 
 ---
 
@@ -333,8 +344,10 @@ btnRed.addEventListener("click", function () {
 
 > Câu hỏi:
 > - Em có thể đổi sang màu khác (vd. `lightblue`) không? Hãy thử.
+document.body.style.backgroundColor = "lightblue";
 > - Em hãy ghi lại 1 ví dụ khác mà JavaScript có thể làm với `document.body.style`.
-
+document.body.style.backgroundColor = "#333";
+document.body.style.color = "#fff";
 ---
 
 #### Bước 3: Xử lý sự kiện input – gõ tên, hiện lời chào
@@ -353,7 +366,9 @@ nameInput.addEventListener("input", function () {
 
 > Câu hỏi:
 > - Sự kiện `"input"` khác gì so với `"click"`?
+sự kiện click kích hoạt khi tương tác chuột còn sự kiện input kích hoạt khi nhập xoá dữ liệu
 > - Khi em xoá hết nội dung ô input, dòng `greeting` hiển thị gì?
+dòng greeting còn "Xin chào, !"
 
 ---
 
@@ -363,8 +378,9 @@ nameInput.addEventListener("input", function () {
 >
 > Em hãy:
 > - Tự mô tả DOM bằng lời của em:
->   ................................................................
+>   dom là biểu diễn html/xml dưới dạng cấu trúc cây 
 > - Nêu 1 ví dụ “thao tác DOM” trong bài (ghi lại 1 dòng lệnh cụ thể).
+const btnHello = document.getElementById("btnHello");
 
 ---
 
