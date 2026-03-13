@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài tập 5 - Thay đổi giao diện</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <h2 class="page-title">Bài 5: Thay đổi giao diện</h2>
+    <div class="preview-box" id="previewBox">
+      <p>Đây là nội dung mẫu để thay đổi giao diện. Hãy thử các nút bên dưới!</p>
+    </div>
+    <div class="style-controls">
+      <p class="control-label">Màu nền:</p>
+      <div class="color-buttons">
+        <button class="btn-color" id="btnColorRed" style="background-color: #e74c3c;" data-color="#e74c3c"></button>
+        <button class="btn-color" id="btnColorBlue" style="background-color: #3498db;" data-color="#3498db"></button>
+        <button class="btn-color" id="btnColorGreen" style="background-color: #27ae60;" data-color="#27ae60"></button>
+        <button class="btn-color" id="btnColorYellow" style="background-color: #f1c40f;" data-color="#f1c40f"></button>
+        <button class="btn-color" id="btnColorPurple" style="background-color: #9b59b6;" data-color="#9b59b6"></button>
+      </div>
+      <p class="control-label">Cỡ chữ:</p>
+      <div class="size-buttons">
+        <button class="btn-size" id="btnSizeSmall">Nhỏ</button>
+        <button class="btn-size" id="btnSizeNormal">Vừa</button>
+        <button class="btn-size" id="btnSizeLarge">Lớn</button>
+      </div>
+      <div class="toggle-section">
+        <button class="btn-primary" id="btnToggleVisibility">Ẩn / Hiện nội dung</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/style-changer.js"></script>
+</body>
+</html>

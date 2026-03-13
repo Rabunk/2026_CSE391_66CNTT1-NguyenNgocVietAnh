@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài tập 6 - Quản lý sinh viên</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-wrapper page-wrapper-wide">
+    <h2 class="page-title">Bài 6: Quản lý sinh viên</h2>
+    <div class="form-section">
+      <div class="form-group">
+        <label for="inputStudentName">Họ tên:</label>
+        <input type="text" id="inputStudentName" placeholder="Nguyễn Văn A">
+      </div>
+      <div class="form-group">
+        <label for="inputStudentEmail">Email:</label>
+        <input type="text" id="inputStudentEmail" placeholder="email@example.com">
+      </div>
+      <button class="btn-primary" id="btnAddStudent">+ Thêm sinh viên</button>
+    </div>
+    <table class="data-table" id="studentTable">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Họ tên</th>
+          <th>Email</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="studentTableBody">
+        <tr>
+          <td>1</td>
+          <td>Trần Thị B</td>
+          <td>tranthib@email.com</td>
+          <td><button class="btn-delete">Xoá</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Lê Văn C</td>
+          <td>levanc@email.com</td>
+          <td><button class="btn-delete">Xoá</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="js/student.js"></script>
+</body>
+</html>

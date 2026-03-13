@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài tập 8 - Quản lý thẻ (Tag)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <h2 class="page-title">Bài 8: Quản lý thẻ (Tag Manager)</h2>
+    <div class="tag-input-section">
+      <div class="search-row">
+        <input type="text" id="inputTagName" placeholder="Nhập tên thẻ...">
+        <button class="btn-search" id="btnAddTag">+ Thêm</button>
+      </div>
+    </div>
+    <div class="tag-container" id="tagContainer">
+      <span class="tag-item">HTML <button class="tag-remove">×</button></span>
+      <span class="tag-item">CSS <button class="tag-remove">×</button></span>
+      <span class="tag-item">JavaScript <button class="tag-remove">×</button></span>
+    </div>
+    <div class="tag-actions">
+      <button class="btn-danger" id="btnRemoveAll">🗑 Xoá tất cả</button>
+      <p class="tag-count" id="tagCountInfo">Số thẻ: 3</p>
+    </div>
+  </div>
+  <script src="js/tag-manager.js"></script>
+</body>
+</html>
