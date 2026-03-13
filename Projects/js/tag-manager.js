@@ -20,7 +20,10 @@ for (let i = 0; i < existingRemoveButtons.length; i++) {
         // TODO: Xoá phần tử .tag-item chứa nút này
         //       Gợi ý: this.parentElement → lấy <span class="tag-item">
         //       Gợi ý: tagContainer.removeChild(tagItem) để xoá
+        const tagItem = this.parentElement;
+        tagContainer.removeChild(tagItem);
         // TODO: Gọi hàm updateTagCount()
+        updateTagCount();
     });
 }
 
@@ -31,15 +34,28 @@ btnAddTag.addEventListener("click", function () {
 
     // Bước 3.2: Kiểm tra ô input trống
     // TODO: Nếu tagName rỗng → alert("Vui lòng nhập tên thẻ!") rồi return
-
+    if ( tagName === "") {
+        alert("Vui long nhap ten the!");
+        return;
+    }
     // Bước 3.3: Kiểm tra thẻ trùng lặp
     // TODO: Lấy tất cả .tag-item hiện có trong tagContainer
+    const existingTags = tagContainer.querySelectorAll(".tag-item");
     // TODO: Duyệt vòng lặp, so sánh textContent (bỏ ký tự "×")
     //       Gợi ý: existingTag.textContent.replace("×", "").trim().toLowerCase()
+    for (let i = 0; i <existingTags.length; i++) {
+        const existingTagName = existingTags[i].textContent.replace("x", "").trim().toLowerCase();
+    } 
     // TODO: Nếu trùng → alert("Thẻ này đã tồn tại!") rồi return
+    if (existingTagName == tagName.toLowerCase()) {
+        alert("The nay da ton tai!");
+        return;
+    }
 
     // Bước 3.4: Tạo thẻ mới
     // TODO: Tạo <span> có class "tag-item"
+    const newTag = document.createElement("span");
+    newTag.classList.add("tag-item");
     // TODO: Nội dung bên trong: tagName + nút "×"
     //       Gợi ý: newTag.innerHTML = tagName + ' <button class="tag-remove">×</button>'
 
