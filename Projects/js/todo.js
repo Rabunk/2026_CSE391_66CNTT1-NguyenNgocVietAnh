@@ -44,14 +44,26 @@ btnAddTask.addEventListener("click", function () {
     // TODO: Khi click nút xoá → xoá phần tử <li> cha ra khỏi danh sách
     btnDel.addEventListener("click", function () {
         taskListContainer.removeChild(newTaskItem);
+        updateTaskCount()
     }) 
+    const btnEdit = document.createElement("button");
+    btnEdit.textContent = "Sửa";
+    btnEdit.classList.add("btn-edit");
+    btnEdit.addEventListener("click", function () {
+        const newName = prompt("Nhập tên công việc mới:", taskNameSpan.textContent);
+        if (newName === "" || newName === null) {
+            alert("Tên công việc không được để trống!");
+            return;
+        }
+        taskNameSpan.textContent = newName;
+    });
     //       Gợi ý: dùng taskListContainer.removeChild(newTaskItem)
     // TODO: Sau khi xoá, gọi hàm updateTaskCount()
-    updateTaskCount()
     // Bước 2.7: Ghép các phần tử lại và thêm vào danh sách
     // TODO: appendChild <span> và <button> vào <li>
     newTaskItem.appendChild(taskNameSpan);
     newTaskItem.appendChild(btnDel);
+    newTaskItem.appendChild(btnEdit);
     // TODO: appendChild <li> vào taskListContainer
     taskListContainer.appendChild(newTaskItem)
 
@@ -70,3 +82,55 @@ function updateTaskCount() {
     // TODO: Cập nhật nội dung taskCountInfo: "Tổng: X công việc"
     taskCountInfo.textContent = "Tổng: " + taskCount + " công việc";
 }
+
+// Luư vào local storage
+function saveToLocal() {
+    const tasks = [];
+    for (let i = 0; i < taskListContainer.children.length; i++) {
+        const taskItem = taskListContainer.children[i];
+        const taskName = taskItem.querySelector("span").textContent;
+        tasks.push(taskName);
+    }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+saveToLocal();
+
+// Load từ local storage
+function loadFromLocal() {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.forEach(taskName => {
+        const newTaskItem = document.createElement("li");
+        newTaskItem.classList.add("todo-item");
+        const taskNameSpan = document.createElement("span");
+        taskNameSpan.textContent = taskName;
+        const btnDel = document.createElement("button");
+        btnDel.textContent = "Xoá";
+        btnDel.classList.add("btn-delete");
+        btnDel.addEventListener("click", function () {
+            taskListContainer.removeChild(newTaskItem);
+            updateTaskCount();
+            saveToLocal();
+        }
+        );
+        const btnEdit = document.createElement("button");
+        btnEdit.textContent = "Sửa";
+        btnEdit.classList.add("btn-edit");
+        btnEdit.addEventListener("click", function () {
+            const newName = prompt("Nhập tên công việc mới:", taskNameSpan.textContent);
+            if (newName === "" || newName === null) {
+                alert("Tên công việc không được để trống!");
+                return;
+            }
+            taskNameSpan.textContent = newName;
+            saveToLocal();
+        }
+        );
+        newTaskItem.appendChild(taskNameSpan);
+        newTaskItem.appendChild(btnDel);
+        newTaskItem.appendChild(btnEdit);
+        taskListContainer.appendChild(newTaskItem);
+    });
+    updateTaskCount();
+
+}
+loadFromLocal();

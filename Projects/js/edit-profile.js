@@ -28,9 +28,13 @@ btnEditProfile.addEventListener("click", function () {
     //       Gợi ý: editName.value = displayName.textContent
     //              editAge.value = displayAge.textContent
     //              editMajor.value = displayMajor.textContent
-
+    editName.value = displayName.textContent;
+    editAge.value = displayAge.textContent;
+    editMajor.value = displayMajor.textContent;
     // TODO: Hiện form chỉnh sửa → editFormContainer.style.display = "block"
+    editFormContainer.style.display = "block";
     // TODO: Ẩn nút chỉnh sửa → btnEditProfile.style.display = "none"
+    btnEditProfile.style.display = "none";
 });
 
 // Bước 3: Gắn sự kiện click cho nút "Lưu"
@@ -41,18 +45,27 @@ btnSaveProfile.addEventListener("click", function () {
     const newMajor = editMajor.value.trim();
 
     // TODO: Kiểm tra nếu có ô nào trống → alert và return
-
+    if (newName === "" || newAge === "" || newMajor === "") {
+        alert("Vui lòng điền đầy đủ thông tin!");
+        return;
+    }
     // TODO: Cập nhật nội dung hiển thị
     //       Gợi ý: displayName.textContent = newName
     //              displayAge.textContent = newAge
     //              displayMajor.textContent = newMajor
-
+    displayName.textContent = newName;
+    displayAge.textContent = newAge;
+    displayMajor.textContent = newMajor;
     // TODO: Ẩn form chỉnh sửa → editFormContainer.style.display = "none"
+    editFormContainer.style.display = "none";
     // TODO: Hiện lại nút chỉnh sửa → btnEditProfile.style.display = "block"
+    btnEditProfile.style.display = "block";
 });
 
 // Bước 4: Gắn sự kiện click cho nút "Huỷ"
 btnCancelEdit.addEventListener("click", function () {
     // TODO: Ẩn form chỉnh sửa → editFormContainer.style.display = "none"
+    editFormContainer.style.display = "none";
     // TODO: Hiện lại nút chỉnh sửa → btnEditProfile.style.display = "block"
+    btnEditProfile.style.display = "block";
 });

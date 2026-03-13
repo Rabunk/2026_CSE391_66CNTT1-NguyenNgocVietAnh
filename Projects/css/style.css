@@ -232,8 +232,24 @@ body {
     transition: background-color 0.2s;
 }
 
+.btn-edit {
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #3ce747;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
 .btn-delete:hover {
-    background-color: #c0392b;
+    background-color: #ed5c30;
+}
+
+.btn-edit:hover {
+    background-color: #45a24b;
 }
 
 .btn-danger {
