@@ -45,6 +45,7 @@ btnAddTask.addEventListener("click", function () {
     btnDel.addEventListener("click", function () {
         taskListContainer.removeChild(newTaskItem);
         updateTaskCount()
+        saveTasks();
     }) 
     const btnEdit = document.createElement("button");
     btnEdit.textContent = "Sửa";
@@ -56,6 +57,7 @@ btnAddTask.addEventListener("click", function () {
             return;
         }
         taskNameSpan.textContent = newName;
+        saveTasks();
     });
     //       Gợi ý: dùng taskListContainer.removeChild(newTaskItem)
     // TODO: Sau khi xoá, gọi hàm updateTaskCount()
@@ -71,7 +73,9 @@ btnAddTask.addEventListener("click", function () {
     // TODO: Đặt inputTaskName.value = ""
     inputTaskName.value = ""
     // TODO: Gọi hàm updateTaskCount()
-    updateTaskCount()
+    updateTaskCount();
+    saveTasks();
+    
 });
 
 // Bước 3: Hàm cập nhật số lượng công việc
@@ -83,21 +87,17 @@ function updateTaskCount() {
     taskCountInfo.textContent = "Tổng: " + taskCount + " công việc";
 }
 
-// Luư vào local storage
-function saveToLocal() {
+// Bước 4: Hàm lưu danh sách công việc vào local storage
+function saveTasks() {
     const tasks = [];
-    for (let i = 0; i < taskListContainer.children.length; i++) {
-        const taskItem = taskListContainer.children[i];
-        const taskName = taskItem.querySelector("span").textContent;
-        tasks.push(taskName);
-    }
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    const taskItems = taskListContainer.querySelectorAll('.todo-item span');
+    taskItems.forEach(span => tasks.push(span.textContent));
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
-saveToLocal();
 
-// Load từ local storage
-function loadFromLocal() {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+// Bước 5: Hàm tải danh sách công việc từ local storage
+function loadTasks() {
+    const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
     tasks.forEach(taskName => {
         const newTaskItem = document.createElement("li");
         newTaskItem.classList.add("todo-item");
@@ -109,9 +109,8 @@ function loadFromLocal() {
         btnDel.addEventListener("click", function () {
             taskListContainer.removeChild(newTaskItem);
             updateTaskCount();
-            saveToLocal();
-        }
-        );
+            saveTasks();
+        });
         const btnEdit = document.createElement("button");
         btnEdit.textContent = "Sửa";
         btnEdit.classList.add("btn-edit");
@@ -122,15 +121,17 @@ function loadFromLocal() {
                 return;
             }
             taskNameSpan.textContent = newName;
-            saveToLocal();
-        }
-        );
+            saveTasks();
+        });
         newTaskItem.appendChild(taskNameSpan);
         newTaskItem.appendChild(btnDel);
         newTaskItem.appendChild(btnEdit);
         taskListContainer.appendChild(newTaskItem);
     });
     updateTaskCount();
-
 }
-loadFromLocal();
+
+// Bước 6: Tải danh sách khi trang load
+document.addEventListener('DOMContentLoaded', loadTasks);
+
+
