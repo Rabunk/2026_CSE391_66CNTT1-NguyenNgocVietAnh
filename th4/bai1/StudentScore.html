@@ -17,13 +17,24 @@
         <input type="number" id="scoreInput" class="form-control" placeholder="Điểm (0-10)" min="0" max="10">
         <button id="btnAdd" class="btn btn-primary">Thêm</button>
     </div>
+    <div class="input-group mb-3">
+        <input type="text" id="searchInput" class="form-control mt-2" placeholder="Tìm kiếm theo tên...">
+        <select id="filterSelect" class="form-select mt-2">
+            <option value="all">Tất cả</option>
+            <option value="gioi">Giỏi</option>
+            <option value="kha">Khá</option>
+            <option value="trungbinh">Trung bình</option>
+        </select>
+    </div>
 
     <table class="table table-hover">
         <thead class="table-primary">
         <tr>
             <th>STT</th>
             <th>Họ tên</th>
-            <th>Điểm</th>
+            <th id="scoreHeader" style="cursor:pointer" class="d-flex align-items-center justify-content-center">
+                Điểm <span id="sortIcon"></span>
+            </th>
             <th>Xếp loại</th>
             <th>Thao tác</th>
         </tr>
