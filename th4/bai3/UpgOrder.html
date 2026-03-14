@@ -1,0 +1,28 @@
+<div class="mb-3">
+    <label>Họ và tên</label>
+    <input type="text" id="fullname" class="form-control" maxlength="50">
+    <div>
+        <span id="nameCount">0</span>/50
+    </div>
+    <small class="text-danger" id="fullnameError"></small>
+</div>
+
+
+<div class="mb-3">
+    <label>Mật khẩu</label>
+
+    <div class="input-group">
+        <input type="password" id="password" class="form-control">
+        <button type="button" id="togglePassword" class="btn btn-outline-secondary">
+            👁
+        </button>
+    </div>
+
+    <div class="progress mt-2">
+        <div id="strengthBar" class="progress-bar"></div>
+    </div>
+
+    <small id="strengthText"></small>
+
+    <small class="text-danger" id="passwordError"></small>
+</div>
