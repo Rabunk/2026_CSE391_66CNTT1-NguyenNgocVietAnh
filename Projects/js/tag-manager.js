@@ -43,11 +43,15 @@ btnAddTag.addEventListener("click", function () {
     const existingTags = tagContainer.querySelectorAll(".tag-item");
     // TODO: Duyệt vòng lặp, so sánh textContent (bỏ ký tự "×")
     //       Gợi ý: existingTag.textContent.replace("×", "").trim().toLowerCase()
-    for (let i = 0; i <existingTags.length; i++) {
-        const existingTagName = existingTags[i].textContent.replace("x", "").trim().toLowerCase();
-    } 
+    let isDuplicate = false;
+    existingTags.forEach(function(existingTag) {
+        const existingTagName = existingTag.textContent.replace("x", "").trim().toLowerCase();
+        if (existingTagName == tagName.toLowerCase()) {
+            isDuplicate = true;
+        }
+    });
     // TODO: Nếu trùng → alert("Thẻ này đã tồn tại!") rồi return
-    if (existingTagName == tagName.toLowerCase()) {
+    if (isDuplicate) {
         alert("The nay da ton tai!");
         return;
     }
@@ -58,28 +62,40 @@ btnAddTag.addEventListener("click", function () {
     newTag.classList.add("tag-item");
     // TODO: Nội dung bên trong: tagName + nút "×"
     //       Gợi ý: newTag.innerHTML = tagName + ' <button class="tag-remove">×</button>'
-
+    newTag.innerHTML = tagName + ' <button class="tag-remove">x</button>';
     // Bước 3.5: Gắn sự kiện xoá cho nút "×" trong thẻ mới
     // TODO: Lấy nút .tag-remove bên trong thẻ vừa tạo
     //       Gợi ý: newTag.querySelector(".tag-remove")
+    const removeButton = newTag.querySelector(".tag-remove");
     // TODO: Gắn sự kiện click → xoá thẻ + gọi updateTagCount()
-
+    removeButton.addEventListener("click", function() {
+        const tagItem = this.parentElement;
+        tagContainer.removeChild(tagItem);
+        updateTagCount();
+    })
     // Bước 3.6: Thêm thẻ vào container và cập nhật
     // TODO: tagContainer.appendChild(newTag)
+    tagContainer.appendChild(newTag);
     // TODO: inputTagName.value = ""
+    inputTagName.value = "";
     // TODO: Gọi updateTagCount()
+    updateTagCount();
 });
 
 // Bước 4: Gắn sự kiện click cho nút "Xoá tất cả"
 btnRemoveAll.addEventListener("click", function () {
     // TODO: Xoá toàn bộ nội dung trong tagContainer
     //       Gợi ý: tagContainer.innerHTML = ""
+    tagContainer.innerHTML = "";
     // TODO: Gọi updateTagCount()
+    updateTagCount();
 });
 
 // Bước 5: Hàm cập nhật số lượng thẻ
 function updateTagCount() {
     // TODO: Đếm số phần tử .tag-item trong tagContainer
     //       Gợi ý: tagContainer.querySelectorAll(".tag-item").length
+    const count = tagContainer.querySelectorAll(".tag-item").length;
     // TODO: Cập nhật tagCountInfo.textContent = "Số thẻ: " + count
+    tagCountInfo.textContent = "So the: " + count;
 }
