@@ -128,6 +128,6 @@ form.addEventListener("submit", function(e) {
         form.style.display = "none";
         successMessage.classList.remove("d-none");
         successMessage.textContent =
-            "Đăng ký thành công! 🎉 Xin chào " + fullname.value;
+            "Đăng ký thành công!  Xin chào " + fullname.value;
     }
 });
