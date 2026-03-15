@@ -131,3 +131,48 @@ form.addEventListener("submit", function(e) {
             "Đăng ký thành công!  Xin chào " + fullname.value;
     }
 });
+
+fullname.addEventListener("input", function() {
+    const len = fullname.value.length;
+    const charCount = document.getElementById("charCount");
+    charCount.textContent = len;
+})
+
+const togglePassword = document.getElementById("togglePassword");
+togglePassword.addEventListener("click", function() {
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+})
+
+const strengthBar = document.getElementById("strengthBar");
+const strengthText = document.getElementById("strengthText");
+
+password.addEventListener("input", strengthCheck);
+
+function strengthCheck() {
+    const value = password.value;
+
+    let strength = 0;
+    if (value.length >= 8) strength++;
+    if (/[A-Z]/.test(value)) strength++;
+    if (/[a-z]/.test(value)) strength++;
+    if (/[0-9]/.test(value)) strength++;
+    if (/[^A-Za-z0-9]/.test(value)) strength++;
+
+    if (strength <= 2) {
+        strengthBar.style.width = "33%";
+        strengthBar.className = "progress-bar bg-danger";
+        strengthText.textContent = "Yếu";
+    } else if ( strength <= 4) {
+        strengthBar.style.width = "66%";
+        strengthBar.className = "progress-bar bg-warning";
+        strengthText.textContent = "Trung bình";
+    } else {
+        strengthBar.style.width = "100%";
+        strengthBar.className = "progress-bar bg-success";
+        strengthText.textContent = "Mạnh";
+    }
+}
