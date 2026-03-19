@@ -2,11 +2,16 @@ const nameInput = document.getElementById("nameInput");
 const scoreInput = document.getElementById("scoreInput");
 const btnAdd = document.getElementById("btnAdd");
 const tableBody = document.getElementById("tableBody");
-
 const totalStudent = document.getElementById("totalStudent");
 const avgScore = document.getElementById("avgScore");
+const searchInput = document.getElementById("searchInput");
+const filterSelect = document.getElementById("filterSelect");
+const scoreHeader = document.getElementById("scoreHeader");
+const sortIcon = document.getElementById("sortIcon");
 
 let students = [];
+let filteredStudents = [];
+let sortDirection = null;
 
 btnAdd.addEventListener("click", addStudent);
 
@@ -36,7 +41,7 @@ function addStudent() {
         score: score
     });
 
-    renderTable();
+    applyFilters();
 
     nameInput.value = "";
     scoreInput.value = "";
@@ -51,10 +56,17 @@ function scoreRanking(score) {
 }
 
 function renderTable() {
+    if (filteredStudents.length == 0) {
+        tableBody.innerHTML = `
+        <tr>
+            <td colspan ="5" class="text-center text-muted">Không có sinh viên nào</td>
+        </tr>`;
+        return;
+    }
 
     tableBody.innerHTML = "";
 
-    students.forEach((sv, index) => {
+    filteredStudents.forEach((sv, index) => {
 
         const tr = document.createElement("tr");
 
@@ -62,13 +74,15 @@ function renderTable() {
             tr.style.backgroundColor = "yellow";
         }
 
+        const sindex = students.indexOf(sv);
+
         tr.innerHTML = `
             <td>${index + 1}</td>
             <td>${sv.name}</td>
             <td>${sv.score}</td>
             <td>${scoreRanking(sv.score)}</td>
             <td>
-                <button class="btn btn-danger btn-sm deleteBtn" data-index="${index}">
+                <button class="btn btn-danger btn-sm deleteBtn" data-index="${sindex}">
                     <i class="bi bi-trash"></i>
                 </button>
             </td>
@@ -89,7 +103,7 @@ tableBody.addEventListener("click", function (e) {
 
     students.splice(index, 1);
 
-    renderTable();
+    applyFilters();
 });
 function updateStatistics() {
 
@@ -103,3 +117,45 @@ function updateStatistics() {
 
     avgScore.textContent = avg;
 }
+
+searchInput.addEventListener("input", applyFilters);
+
+filterSelect.addEventListener("change", applyFilters);
+
+scoreHeader.addEventListener("click", function() {
+    if (sortDirection === "asc") {
+        sortDirection = "desc";
+        sortIcon.textContent = "▼";
+    } else {
+        sortDirection = "asc";
+        sortIcon.textContent = "▲";
+    }
+    applyFilters();
+});
+
+function applyFilters() {
+    const keyword = searchInput.value.trim().toLowerCase();
+    const filter = filterSelect.value;
+
+    filteredStudents = students.filter(s => {
+        const matchesKeyword = s.name.toLowerCase().includes(keyword);
+        let matchRank = true;
+
+        if (filter !== "all") {
+            const rank = scoreRanking(s.score).toLowerCase();
+            matchRank = rank === filter;
+        }
+        return matchesKeyword && matchRank;
+    });
+
+    if (sortDirection === "asc") {
+        filteredStudents.sort((a, b) => a.score - b.score);
+    } else if (sortDirection === "desc") {
+        filteredStudents.sort((a, b) => b.score - a.score);
+    } else {
+        sortIcon.textContent = "";
+    }
+
+    renderTable();
+}
+applyFilters();
