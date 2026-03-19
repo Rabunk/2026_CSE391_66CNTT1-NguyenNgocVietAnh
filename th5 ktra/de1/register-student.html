@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sinh viên</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Student Management</h5>
+            <a href="students.html" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-list-check"></i> Danh sách
+            </a>
+        </div>
+    </header>
+
+    <main class="container mt-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title mb-4" id="formTitle">Đăng ký Sinh viên</h3>
+                <form id="studentForm" novalidate>
+                    <div class="row gy-3">
+                        <div class="col-md-6">
+                            <label for="fullName" class="form-label">Họ và tên</label>
+                            <input type="text" id="fullName" class="form-control" >
+                            <div class="invalid-feedback" id="fullNameError"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="studentId" class="form-label">Mã sinh viên</label>
+                            <input type="text" id="studentId" class="form-control" placeholder="VD: SV001">
+                            <div class="invalid-feedback" id="studentIdError"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-control" >
+                            <div class="invalid-feedback" id="emailError"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Số điện thoại</label>
+                            <input type="tel" id="phone" class="form-control" >
+                            <div class="invalid-feedback" id="phoneError"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="major" class="form-label">Ngành học</label>
+                            <select id="major" class="form-select">
+                                <option value="">Chọn ngành</option>
+                                <option value="IT">Công nghệ thông tin</option>
+                                <option value="Business">Kinh doanh</option>
+                                <option value="Design">Thiết kế</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Finance">Tài chính</option>
+                            </select>
+                            <div class="invalid-feedback" id="majorError"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label d-block">Giới tính</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Nam">
+                                <label class="form-check-label" for="genderMale">Nam</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Nữ">
+                                <label class="form-check-label" for="genderFemale">Nữ</label>
+                            </div>
+                            <div class="invalid-feedback d-block" id="genderError"></div>
+                        </div>
+
+                        <div class="col-12 d-flex gap-2 justify-content-end mt-3">
+                            <button type="button" id="cancelBtn" class="btn btn-secondary">Hủy</button>
+                            <button type="submit" class="btn btn-primary" id="saveBtn">Lưu thông tin</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
