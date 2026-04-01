@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 
-export default function EmployeeModal({ show, onHide, onSave, initialData, mode = 'add' }) {
+export default function EmployeeModal({ show, onHide, onSave, EmployeeData, mode = 'add' }) {
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [phone, setPhone] = useState('')
@@ -9,12 +9,12 @@ export default function EmployeeModal({ show, onHide, onSave, initialData, mode 
 	const [gender, setGender] = useState('Nam')
 
 	useEffect(() => {
-		if (initialData) {
-			setName(initialData.name || '')
-			setEmail(initialData.email || '')
-			setPhone(initialData.phone || '')
-			setPosition(initialData.position || '')
-			setGender(initialData.gender || 'Nam')
+		if (EmployeeData) {
+			setName(EmployeeData.name || '')
+			setEmail(EmployeeData.email || '')
+			setPhone(EmployeeData.phone || '')
+			setPosition(EmployeeData.position || '')
+			setGender(EmployeeData.gender || 'Nam')
 		} else {
 			setName('')
 			setEmail('')
@@ -22,7 +22,7 @@ export default function EmployeeModal({ show, onHide, onSave, initialData, mode 
 			setPosition('')
 			setGender('Nam')
 		}
-	}, [initialData, show])
+	}, [EmployeeData, show])
 
 	function handleSubmit(e) {
 		e.preventDefault()
@@ -33,7 +33,7 @@ export default function EmployeeModal({ show, onHide, onSave, initialData, mode 
 		if (!/^\d{10}$/.test(phone)) return alert('Số điện thoại phải đúng 10 chữ số')
 
 		const payload = {
-			...(initialData || {}),
+			...(EmployeeData || {}),
 			name: name.trim(),
 			email: email.trim(),
 			phone: phone.trim(),
