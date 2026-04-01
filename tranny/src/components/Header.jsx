@@ -20,7 +20,7 @@ export default function Header({ searchTerm, onSearch }) {
 						className="form-control search-input"
 						placeholder="Tìm kiếm..."
 					/>
-					<button id="searchBtn" className="btn btn-sm btn-light ms-2" onClick={() => onSearch(searchTerm)}>
+					<button id="searchBtn" className="btn bg-primary text-white ms-2" onClick={() => onSearch(searchTerm)}>
 						Tìm
 					</button>
 				</div>
