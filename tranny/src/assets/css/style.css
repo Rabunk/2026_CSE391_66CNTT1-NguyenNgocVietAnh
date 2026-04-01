@@ -1,0 +1,15 @@
+.app-header{
+    background-color: rgba(27, 26, 26, 0.897);
+    border-bottom: 1px solid rgba(119, 108, 108, 0.1);
+    margin-bottom: 16px;
+    padding: 10px;
+}
+
+table th, td {
+    vertical-align: middle;
+}
+
+.card {
+    border-radius: 8px;
+}
+
